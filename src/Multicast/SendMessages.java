@@ -7,7 +7,7 @@ import java.net.MulticastSocket;
 
 public class SendMessages {
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException  {
 		
 		InetAddress destination = InetAddress.getByName("244.0.0.1");
 		int port = 7654;

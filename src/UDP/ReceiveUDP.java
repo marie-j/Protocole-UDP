@@ -4,7 +4,7 @@ import java.io.*;
 
 public class ReceiveUDP {
 
-	public static void main(String[] arg) throws IOException {
+	public static void main(String[] arg) throws IOException  {
 		
 		int port = Integer.parseInt(arg[0]);
 		DatagramSocket socket = new DatagramSocket(port);
