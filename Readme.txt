@@ -21,3 +21,7 @@ Programme de Tchat
 
 Q1 : 
 On utilise les threads pour créer plusieurs actions simultanée: un sera chargé de recevoir les paquets et l'autre de les envoyer.
+
+Q2: 
+Pour associer un nom d'utilisateur au message reçu , il faut récupérer l'adresse associé au paquet envoyé ( la SocketAddress) et de cette 
+adresse, par la suite récupérer le nom de l'utilisateur.
