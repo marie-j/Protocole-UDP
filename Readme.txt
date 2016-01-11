@@ -17,3 +17,7 @@ Si l'adresse était saisie par l'utilisateur il faudrait initialiser l'adresse �
 pas valide.
 
 
+Programme de Tchat 
+
+Q1 : 
+On utilise les threads pour créer plusieurs actions simultanée: un sera chargé de recevoir les paquets et l'autre de les envoyer.
