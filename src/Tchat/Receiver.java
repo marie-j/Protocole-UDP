@@ -3,6 +3,7 @@ package Tchat;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
 
 public class Receiver extends Thread {
@@ -30,7 +31,11 @@ public class Receiver extends Thread {
 
 			
 			String message = new String(this.packet.getData());
-			System.out.println(message);
+			
+			InetSocketAddress userAddress = (InetSocketAddress) this.packet.getSocketAddress();
+			String user = userAddress.getHostName();
+			
+			System.out.println(user + ":" + message);
 		}
 		
 		public void close() {
