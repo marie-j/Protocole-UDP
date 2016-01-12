@@ -8,38 +8,38 @@ import java.net.MulticastSocket;
 
 public class Receiver extends Thread {
 
-		MulticastSocket socket;
-		DatagramPacket packet;
-		
-		public Receiver(InetAddress address,int port) throws IOException {
-			super();
-			
-			this.socket = new MulticastSocket(port);
-			this.packet = new DatagramPacket(new byte[512],512);
-			
-			this.socket.joinGroup(address);
-		}
-		
-		public void run() {
-			
-			try {
-				this.socket.receive(this.packet);
-			} 
-			catch (IOException e) {
-				System.out.println("Sorry, you cannot receive anything for the moment");
-			}
+	MulticastSocket socket;
+	DatagramPacket packet;
 
-			
-			String message = new String(this.packet.getData());
-			
-			InetSocketAddress userAddress = (InetSocketAddress) this.packet.getSocketAddress();
-			String user = userAddress.getHostName();
-			
-			System.out.println(user + ":" + message);
+	public Receiver(InetAddress address, int port) throws IOException {
+		super();
+
+		this.socket = new MulticastSocket(port);
+		this.packet = new DatagramPacket(new byte[512], 512);
+
+		this.socket.joinGroup(address);
+	}
+
+	public void run() {
+
+		try {
+			this.socket.receive(this.packet);
+		} catch (IOException e) {
+			System.out
+					.println("Sorry, you cannot receive anything for the moment");
 		}
-		
-		public void close() {
-			this.socket.close();
-		}
-		
+
+		String message = new String(this.packet.getData());
+
+		InetSocketAddress userAddress = (InetSocketAddress) this.packet
+				.getSocketAddress();
+		String user = userAddress.getHostName();
+
+		System.out.println(user + ":" + message);
+	}
+
+	public void close() {
+		this.socket.close();
+	}
+
 }
