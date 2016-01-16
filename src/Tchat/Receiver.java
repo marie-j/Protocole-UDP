@@ -11,21 +11,21 @@ public class Receiver extends Thread {
 
 	MulticastSocket socket;
 	DatagramPacket packet;
-	AtomicBoolean run;
+	AtomicBoolean receiving;
 
-	public Receiver(InetAddress address, int port, AtomicBoolean run) throws IOException {
+	public Receiver(InetAddress address, int port, AtomicBoolean receiving) throws IOException {
 		super();
 
 		this.socket = new MulticastSocket(port);
 		this.packet = new DatagramPacket(new byte[512], 512);
 
 		this.socket.joinGroup(address);
-		this.run = run;
+		this.receiving = receiving;
 	}
 
 	public void run() {
 		
-		while (run.get()){
+		while (this.receiving.get()){
 
 			try {
 				this.socket.receive(this.packet);

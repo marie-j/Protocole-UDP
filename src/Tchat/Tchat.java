@@ -22,10 +22,12 @@ public class Tchat {
 		}
 
 		int port = Integer.parseInt(args[1]);
-		AtomicBoolean run = new AtomicBoolean(true);
+		
+		//use of an AtomicBoolean to manipulate an object and not only a value
+		AtomicBoolean receiving = new AtomicBoolean(true);
 		
 		try {
-			receiver = new Receiver(address, port, run);
+			receiver = new Receiver(address, port, receiving);
 		} catch (IOException e) {
 			System.out.println("Sorry , you cannot receive messages");
 		}
@@ -47,7 +49,7 @@ public class Tchat {
 			message = scanner.nextLine();
 		}
 
-		run.set(false);
+		receiving.set(false);
 		sender.send("-> User left the channel", port);
 
 		scanner.close();
