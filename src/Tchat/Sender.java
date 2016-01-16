@@ -5,7 +5,7 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 
-public class Sender extends Thread {
+public class Sender {
 
 	MulticastSocket socket;
 	DatagramPacket packet;

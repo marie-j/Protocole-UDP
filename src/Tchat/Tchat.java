@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Tchat {
 
@@ -21,9 +22,10 @@ public class Tchat {
 		}
 
 		int port = Integer.parseInt(args[1]);
-
+		AtomicBoolean run = new AtomicBoolean(true);
+		
 		try {
-			receiver = new Receiver(address, port);
+			receiver = new Receiver(address, port, run);
 		} catch (IOException e) {
 			System.out.println("Sorry , you cannot receive messages");
 		}
@@ -38,14 +40,17 @@ public class Tchat {
 		String message = scanner.nextLine();
 
 		receiver.start();
+		
 		while (!message.equals("echap")) {
-			System.out.println("you : " + message);
+			
 			sender.send(message, port);
 			message = scanner.nextLine();
 		}
 
+		run.set(false);
+		sender.send("-> User left the channel", port);
+
 		scanner.close();
-		receiver.close();
 		sender.close();
 
 	}
